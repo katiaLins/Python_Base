@@ -1,0 +1,5 @@
+O que exatamente acontece quando executamos um arquivo que começa com '#!' - também conhecido como shebang. 
+O #! shebang serve para dizer ao kernel qual será o interpretador a ser utilizado para executar os comandos presentes no arquivo.
+
+No Python é uma boa prática executar shebang, forçando o ambiente env e informar a versão do python.
+Ex.: #!/use/bin/env python3

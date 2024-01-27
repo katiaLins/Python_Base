@@ -1,0 +1,3 @@
+primeira nota	geral	Aprenda programação.
+segunda nota	Python é legal d++	Aprendendo python para ficar ricaaa :)
+terceira nota	tech	Java também é legal.
