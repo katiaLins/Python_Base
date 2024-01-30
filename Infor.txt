@@ -3,3 +3,7 @@ O #! shebang serve para dizer ao kernel qual será o interpretador a ser utiliza
 
 No Python é uma boa prática executar shebang, forçando o ambiente env e informar a versão do python.
 Ex.: #!/use/bin/env python3
+
+
+Instalando ambiente virtiual
+python3 -m venv .venv
