@@ -35,12 +35,13 @@ from datetime import datetime
 arguments = sys.argv[1:]
 
 
-# TODO: Exception
+# Validação
 if not arguments:
     operation = input("operação:")
     n1 = input("n1:")
     n2 = input("n2:")
     arguments = [operation, n1, n2]
+    
 elif len(arguments) != 3:
     print("Número de argumentos invalidos")
     print("Ex: `sum 5 5`")
@@ -67,7 +68,11 @@ for num in nums:
         num = int(num)
     validated_nums.append(num)
 
-n1, n2 = validated_nums
+try:
+    n1, n2 = validated_nums
+except VAllueError as e:
+    print(str(e))
+    sys.exit(1)
 
 
 # TODO: User dict de funcoes 
@@ -83,16 +88,25 @@ if operation == "mul":
 if operation == "div":
     resultado = n1 / n2
 
-path = os.curdir
+# path = "/" teste erro de permissão em diretório
+
+path = os.curdir 
 filepath = os.path.join(path,  "infixcalc.log")
 timestamp = datetime.now().isoformat()
 user = os.getenv('USER', 'anonymous')
 
-with open(filepath, "a") as file_:
-    file_.write(f"{timestamp} -  {user} - {operation}, {n1 }, {n2} = {resultado}\n")
-# print(f"{operation}, {n1 }, {n2} = {resultado}, file=open(filename, "a"))
-
 print(f"O resultado é: {resultado}")
+
+try:
+    with open(filepath, "a") as file_:
+        file_.write(f"{timestamp} -  {user} - {operation}, {n1 }, {n2} = {resultado}\n")
+    # print(f"{operation}, {n1 }, {n2} = {resultado}, file=open(filename, "a"))
+except PermissionError as e:
+    # TODO: logging
+    print(str(e))
+    sys.exit(1)
+
+
     
 
 
