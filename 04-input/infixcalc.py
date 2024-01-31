@@ -31,6 +31,10 @@ __version__ = "0.1.0"
 
 import sys
 import os
+
+
+
+
 from datetime import datetime 
 arguments = sys.argv[1:]
 
@@ -102,7 +106,7 @@ try:
         file_.write(f"{timestamp} -  {user} - {operation}, {n1 }, {n2} = {resultado}\n")
     # print(f"{operation}, {n1 }, {n2} = {resultado}, file=open(filename, "a"))
 except PermissionError as e:
-    # TODO: logging
+    # TODO: logging 
     print(str(e))
     sys.exit(1)
 

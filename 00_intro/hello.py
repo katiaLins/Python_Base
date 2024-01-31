@@ -21,6 +21,24 @@ __license__ = "Unlicence"
 
 import os
 import sys
+import logging
+
+log_level = os.getenv("LOG_LEVEL", "WARNING").upper()
+# Instacia logging
+log = logging.Logger("Logs.py", log_level)
+# level
+ch = logging.StreamHandler()
+ch.setLevel(log_level)
+# Formatação
+fmt = logging.Formatter(
+    '%(asctime)s %(name)s %(levelname)s'
+    'l:%(lineno)d f:%(filename)s: %(message)s'
+)
+ch.setFormatter(fmt)
+# destino
+log.addHandler(ch)
+
+
 
 arguments = {"lang" : None,"count" : 1}
 
@@ -28,11 +46,12 @@ for arg in sys.argv[1:]:
     try:
         key, value = arg.split("=")
     except ValueError as e:
-        # TODO: Logging
-        print(f"[ERROR] {str(e)}")
-        print("You need to use ´=´")
-        print(f"You passed {arg}")
-        print("try with --key=value")
+        log.error(
+            "You need to use ´=´, You passed %s, try --key=value: %s",
+            arg, 
+            str(e)
+        )
+        
         sys.exit(1)  
 
 
