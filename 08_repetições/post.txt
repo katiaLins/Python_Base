@@ -1,0 +1,8 @@
+title: Meu post 
+tags:tech, geral
+date: 2022-0210
+pubished:1
+---
+Este é o meu post
+aqui tem texe e conteúdo.
+etc. etc. etc.

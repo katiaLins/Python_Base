@@ -1,0 +1,3 @@
+katia,1,2
+licia,2,4
+bruno,3,3
