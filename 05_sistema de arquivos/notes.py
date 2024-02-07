@@ -11,7 +11,7 @@ $ notes.y read tag
 ...
 ...
 """
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 import os
 import sys
@@ -30,27 +30,43 @@ cmds = ("read", "new")
 if arguments[0] not in cmds:
     print(f"Invalid command {arguments[0]}")
     sys.exit(1)
-    
-if arguments[0] == "read":
-    # leitura das notas
-    for line in open(filepath):
-        title, tag, text = line.split("\t")
-        if tag.lower() == arguments[1].lower():
-            print(f"titulo: {title}")
-            print(f"text: {text}")
-            print("-" * 30)
-            print()
 
 
-if arguments[0] == "new":
-    # criação das notas
-    title = arguments[1] # TODO: testar exception
-    text = [
-        f"{title}", 
-        input("tag:").strip(),
-        input("text:\n").strip(),
+while True:
         
-    ]
+    if arguments[0] == "read":
+        try:
+            arg_tag = arguments[1].lower()
+        except IndexError:
+            arg_tag = input("Qual a tag?").strip().lower()
+            
+        # leitura das notas
+        for line in open(filepath):
+            title, tag, text = line.split("\t")
+            if tag.lower() == arg_tag:
+                print(f"titulo: {title}")
+                print(f"text: {text}")
+                print("-" * 30)
+                print()
 
-    with open(filepath, "a") as file_:
-        file_.write("\t".join(text) + "\n")
+
+    if arguments[0] == "new":
+        # criação das notas
+        try:
+            title = arguments[1] 
+        except IndexError:
+            title = input("Qual o Titulo:").strip().title()
+            
+        text = [
+            f"{title}", 
+            input("tag:").strip(),
+            input("text:\n").strip(),
+            
+        ]
+
+        with open(filepath, "a") as file_:
+            file_.write("\t".join(text) + "\n")
+
+    cont =  input(f"Quer continuar {arguments[0]}?  [N,y]").strip().lower()
+    if cont != "y":
+        break
