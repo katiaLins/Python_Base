@@ -19,9 +19,9 @@ __version__ = "0.1.3"
 _autor__ = "katia Lins"
 __license__ = "Unlicence"
 
+import logging
 import os
 import sys
-import logging
 
 log_level = os.getenv("LOG_LEVEL", "WARNING").upper()
 # Instacia logging
